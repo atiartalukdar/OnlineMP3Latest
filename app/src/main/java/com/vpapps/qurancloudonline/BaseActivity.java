@@ -1374,11 +1374,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationStart(Animation animation) {
                 ll_adView.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
+                ll_adView.setVisibility(View.VISIBLE);
             }
 
             @Override

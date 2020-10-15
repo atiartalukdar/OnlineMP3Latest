@@ -46,7 +46,6 @@
                     app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             </com.google.android.material.appbar.AppBarLayout>
-
             <FrameLayout
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
