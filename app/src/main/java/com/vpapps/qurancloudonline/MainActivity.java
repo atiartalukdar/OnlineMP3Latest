@@ -64,9 +64,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.content_main, contentFrameLayout);
 
+        try {
+            Log.e("Atiar - fcm", MyFirebaseMessagingService.getToken());
+            new RegisterApp(getApplicationContext(),MyFirebaseMessagingService.getToken(), BuildConfig.VERSION_CODE).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        Log.e("Atiar - fcm", MyFirebaseMessagingService.getToken());
-        new RegisterApp(getApplicationContext(),MyFirebaseMessagingService.getToken(), BuildConfig.VERSION_CODE).execute();
 
 
 //        try {

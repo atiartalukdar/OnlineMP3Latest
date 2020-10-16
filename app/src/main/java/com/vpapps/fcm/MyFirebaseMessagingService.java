@@ -15,15 +15,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         token = s;
-        Log.e("Atiar - New TOken", s);
-        new RegisterApp(getApplicationContext(),s, BuildConfig.VERSION_CODE);
+        //Log.e("Atiar - New TOken", s);
+        try{
+            new RegisterApp(getApplicationContext(),s, BuildConfig.VERSION_CODE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    @Override
+/*    @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        //Log.e("Atiar msg =" , remoteMessage.getRawData().toString());
-    }
+        Log.e("Atiar msg =" , remoteMessage.getData().get("message")+"");
+
+    }*/
 
     public static String getToken() {
         if (token==null || token.equals("") || token.equals("empty")){

@@ -11,8 +11,11 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.onesignal.NotificationExtenderService;
 import com.onesignal.OSNotificationReceivedResult;
 import com.vpapps.qurancloudonline.BuildConfig;
@@ -39,6 +42,8 @@ public class NotificationExtenderExample extends NotificationExtenderService {
         message = receivedResult.payload.body;
         bigpicture = receivedResult.payload.bigPicture;
 
+        Log.e("Atiar - Notification = ","Title = "+title+ " Message = "+message);
+        Log.e("Atiar - object = ",receivedResult.payload.toJSONObject().toString());
         try {
             Constant.pushCID = receivedResult.payload.additionalData.getString("cat_id");
             Constant.pushCName = receivedResult.payload.additionalData.getString("cat_name");
@@ -68,8 +73,8 @@ public class NotificationExtenderExample extends NotificationExtenderService {
     }
 
     private void sendNotification() {
+        Log.e("Atiar - ", "sendNotification line 75");
         NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-
         Intent intent;
         if (!Constant.pushSID.equals("0") || !Constant.pushCID.equals("0") || !Constant.pushArtID.equals("0") || !Constant.pushAlbID.equals("0")) {
             intent = new Intent(this, SplashActivity.class);
@@ -114,6 +119,7 @@ public class NotificationExtenderExample extends NotificationExtenderService {
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 
+        Log.e("Atiar = ", "line number 120");
     }
 
     private int getNotificationIcon(NotificationCompat.Builder notificationBuilder) {
