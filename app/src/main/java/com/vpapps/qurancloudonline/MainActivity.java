@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.vpapps.asyncTask.LoadAbout;
+import com.vpapps.fcm.MyFirebaseMessagingService;
+import com.vpapps.fcm.RegisterApp;
 import com.vpapps.fragment.FragmentAlbums;
 import com.vpapps.fragment.FragmentArtist;
 import com.vpapps.fragment.FragmentDashBoard;
@@ -59,6 +63,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.content_main, contentFrameLayout);
+
+
+        Log.e("Atiar - fcm", MyFirebaseMessagingService.getToken());
+        new RegisterApp(getApplicationContext(),MyFirebaseMessagingService.getToken(), BuildConfig.VERSION_CODE).execute();
 
 
 //        try {
